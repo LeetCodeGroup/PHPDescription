@@ -18,21 +18,22 @@
 //Output: False
 function Reward($str)
 {
-	$resource = [];
 	$arr = str_split($str);
-	$len = count($arr);
-	for($i=0;$i<$len;$i++){
-		if(isset($arr[$i+1]) && isset($arr[$i+2])){
-			if($arr[$i] == 'L' && $arr[$i+1] == 'L' && $arr[$i+2] == 'L'){
-				$resource[] = 'f';
-			}else if($arr[$i] == 'A' && $arr[$i+1] == 'A'){
-				$resource[] = 'f';
-			}else{
-				$resource[] = 't';
-			}
+	$lcount = 0;
+	$count = array_count_values($arr);
+	foreach($arr as $v){
+		switch ($v) {
+			case 'L':
+				$lcount += 1;
+				break;
+			default:
+				if($lcount < 3){
+					$lcount = 0;
+				}
+				break;
 		}
 	}
-	if(in_array('f', $resource)){
+	if($count['A'] >= 2 || $lcount >= 3){
 		echo "false";
 	}else{
 		echo "true";
