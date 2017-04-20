@@ -38,4 +38,21 @@ function Reward($str)
 		echo "true";
 	}
 }
+
+
+function Reward2($str)
+{
+	$arr = str_split($str);
+	$k1 = array_search('A',$arr);
+	$v1 = isset($arr[$k1+1]) ? $arr[$k1+1] : null;
+	$k2 = array_search('L',$arr);
+	$v2 = isset($arr[$k2+2]) ? $arr[$k2+2] : null;
+	if($v1 == 'A'){
+		echo "false";
+	}else if($v2 == 'L'){
+		echo "false";
+	}else{
+		echo "true";
+	}
+}
 ?>
