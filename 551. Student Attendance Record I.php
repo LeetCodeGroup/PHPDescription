@@ -45,7 +45,9 @@ function Reward2($str)
   $max='';
   while($str != ''){
     $i=0;
-    while($i<strlen($str) && $str[$i]==$str[0]) $i++;
+    while($i<strlen($str) && $str[$i]==$str[0]){
+    	$i++;
+    } 
     $max=substr($str,0,$i);
     $max_v = substr($str,0,1);
     if($max_v == 'A'){
