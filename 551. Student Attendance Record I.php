@@ -16,16 +16,26 @@
 //Example 2
 //Input: "PPALLL"
 //Output: False
-
-	function Reward($str)
-	{
-		$arr = str_split($str);
-		$count = array_count_values($arr);
-		if($count['A'] <= 1 && $count['L'] <= 2){
-			$resource = "True";
-		}else{
-			$resource = "False";
+function Reward($str)
+{
+	$resource = [];
+	$arr = str_split($str);
+	$len = count($arr);
+	for($i=0;$i<$len;$i++){
+		if(isset($arr[$i+1]) && isset($arr[$i+2])){
+			if($arr[$i] == 'L' && $arr[$i+1] == 'L' && $arr[$i+2] == 'L'){
+				$resource[] = 'f';
+			}else if($arr[$i] == 'A' && $arr[$i+1] == 'A'){
+				$resource[] = 'f';
+			}else{
+				$resource[] = 't';
+			}
 		}
-		return $resource;
 	}
+	if(in_array('f', $resource)){
+		echo "false";
+	}else{
+		echo "true";
+	}
+}
 ?>
