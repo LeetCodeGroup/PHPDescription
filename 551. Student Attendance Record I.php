@@ -42,16 +42,32 @@ function Reward($str)
 
 function Reward2($str)
 {
-	$arr = str_split($str);
-	$k1 = array_search('A',$arr);
-	$v1 = isset($arr[$k1+1]) ? $arr[$k1+1] : null;
-	$k2 = array_search('L',$arr);
-	$v2 = isset($arr[$k2+2]) ? $arr[$k2+2] : null;
-	if($v1 == 'A' || $v2 == 'L'){
-		echo "false";
-	}else{
-		echo "true";
-	}
+  $max='';
+  while($str != ''){
+    $i=0;
+    while($i<strlen($str) && $str[$i]==$str[0]) $i++;
+    $max=substr($str,0,$i);
+    $max_v = substr($str,0,1);
+    if($max_v == 'A'){
+    	$max_a[] = $max;
+    	if(count($max_a) >=2){
+    		$resource[] = "false";
+    	}
+    }else if($max_v == 'L'){
+    	$len_l = strlen($max);
+    	if($len_l >=3){
+    		$resource[]  = "false";
+    	}
+    }else{
+    	$resource[] = "true";
+    }
+    $str=substr($str,$i);
+  }
+  if(in_array("false",$resource)){
+  	echo "false";
+  }else{
+  	echo "true";
+  }
 }
 
 ?>
